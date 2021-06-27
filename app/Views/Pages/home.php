@@ -87,7 +87,7 @@
     </div>
 </section>
 <section>
-    <div class="container">
+    <div class="container overflow-hidden">
         <div class="section-title">
             <span>Blog</span>
             <h2>Featured News on Study Abroad</h2>
@@ -95,14 +95,27 @@
 
         <?php if (!empty($posts) && is_array($posts)) : ?>
 
-        <div class="row g-4 mb-4">
+        <div class="row g-5 mb-4">
             <?php foreach ($posts as $post) : ?>
             <div class="col-lg-4">
-                <div class="card">
-                    <img src="<?= is_file('/img/post/' . $post['image']) ? '/img/post/' . $post['image'] : '/img/post/default.png' ?>"
-                        class="card-img-top" alt="post-image">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= esc($post['title']) ?></h5>
+                <div class="card shadow">
+                    <a href="/blog/<?= esc($post['slug'], 'url') ?>" class="zoom-container">
+                        <img src="<?= is_file('/img/post/' . $post['image']) ? '/img/post/' . $post['image'] : '/img/post/default.png' ?>"
+                            class="card-img-top zoom" alt="post-image">
+                    </a>
+                    <div class="card-body p-4">
+                        <p class="text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-calendar3" viewBox="0 0 16 16">
+                                <path
+                                    d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" />
+                                <path
+                                    d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                            </svg>
+                            <?= date('d M Y') ?>
+                        </p>
+                        <h5 class="card-title mb-3"><a
+                                href="/blog/<?= esc($post['slug'], 'url') ?>"><?= esc($post['title']) ?></a></h5>
                         <p class="card-text"><?= esc(wordCut($post['description'], 150)) ?></p>
                         <a href="/blog/<?= esc($post['slug'], 'url') ?>">Read More</a>
                     </div>
@@ -114,6 +127,18 @@
         <?php else : ?>
         <h3>No posts Found</h3>
         <?php endif ?>
+    </div>
+</section>
+<section class="m-0 p-5 bg-calltoaction text-white">
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-md-9 d-flex align-items-center">
+                <h2 class="mb-0 fw-lighter">Want to get this lightning fast blog?</h2>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-theme text-uppercase">Call Us Now</button>
+            </div>
+        </div>
     </div>
 </section>
 <?= $this->endSection() ?>
